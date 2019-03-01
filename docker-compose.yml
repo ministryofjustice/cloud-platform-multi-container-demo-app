@@ -19,3 +19,10 @@ services:
     environment:
       DATABASE_URL: postgres://postgres@db
       CONTENT_API_URL: http://content-api:4567/image_url.json
+  worker:
+    build: worker
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres@db
+      DATABASE: rails-app_development
