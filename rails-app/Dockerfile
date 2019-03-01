@@ -7,4 +7,5 @@ RUN apk --update add --virtual build_deps \
 
 WORKDIR /app
 
-COPY Gemfile ./
+COPY Gemfile* ./
+RUN bundle install
