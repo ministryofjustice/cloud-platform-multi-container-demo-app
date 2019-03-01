@@ -2,28 +2,19 @@ version: '3'
 services:
   db:
     image: postgres
-  rails-migrator:
-    build: rails-app
-    command: "bundle exec rails db:setup"
-    volumes:
-      - ./rails-app:/app
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://postgres@db
   content-api:
     build: content-api
     ports:
       - "4567:4567"
   rails-app:
     build: rails-app
+    command: ./start.sh
     volumes:
       - ./rails-app:/app
     ports:
       - "3000:3000"
     depends_on:
       - db
-      - rails-migrator
       - content-api
     environment:
       DATABASE_URL: postgres://postgres@db
