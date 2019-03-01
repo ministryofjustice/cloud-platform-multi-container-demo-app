@@ -11,6 +11,10 @@ services:
       - db
     environment:
       DATABASE_URL: postgres://postgres@db
+  content-api:
+    build: content-api
+    ports:
+      - "4567:4567"
   rails-app:
     build: rails-app
     volumes:
@@ -20,5 +24,7 @@ services:
     depends_on:
       - db
       - rails-migrator
+      - content-api
     environment:
       DATABASE_URL: postgres://postgres@db
+      CONTENT_API_URL: http://content-api:4567/image_url.json
