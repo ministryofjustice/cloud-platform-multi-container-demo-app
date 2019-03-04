@@ -13,21 +13,34 @@ Each of these components runs in its own container. The Ruby on Rails applicatio
 
 ![Architecture Diagram](https://raw.githubusercontent.com/ministryofjustice/cloud-platform-multi-container-demo-app/master/docs/architecture-diagram.png)
 
-The intent is to have a tutorial application that has the following deployment requirements:
+Deploying this application to the [MoJ cloud platform][cloudplatform] demonstrates the following deployment requirements:
 
-* Multiple containers, with communication between them
-* An RDS instance
-* A secret (the RDS database credentials)
-* Shared configuration (both the Rails app. and the worker need the database credentials)
-* Database migrations
+* Deploying multiple, inter-dependent containers
+* Setting up an RDS instance
+* Adding deployment secrets (the RDS database credentials)
+* Running database migrations
 
-The tutorial will cover:
+## Running the application locally
 
-* Running the whole application locally via docker-compose (to verify that it works)
-* Granting Helm permission to deploy applications within the user's cluster namespace
-* Creating the RDS instance for the application
-* Adding kubernetes secrets to make the database credentials available
-* An explanation of the Helm chart to deploy the application
-* Manual deployment (via Helm)
-* Setting up CircleCI to continuously deploy the application
-* Making a change and confirming that the deployed application gets updated
+To run the application locally, you will need [Docker][docker]. After cloning the application from github, run:
+
+      docker-compose up
+
+This will fetch and build all the docker containers which run the different components of the application, i.e. the `rails-app`, `content-api`, `db`, and the `worker`.
+
+See the `docker-compose.yml` file for the details on how this works. More information about `docker-compose` is available [here][docker-compose]
+
+For the local instance of the application, we are running Postgres in an ephemeral docker container. When deployed to the [cloud platform][cloudplatform], we will use an [Amazon RDS][rds] instance.
+
+After the application is started, visit `http://localhost:3000` in your browser, and you should see something similar to this:
+
+![Screenshot](https://raw.githubusercontent.com/ministryofjustice/cloud-platform-multi-container-demo-app/master/docs/screenshot.png)
+
+If you refresh the page, you should see a different cat picture (the URL of which the rails-app fetches from the content-api component).
+
+Every ten seconds, the displayed message should change (you will need to refresh the browser to see the change), when the worker updates the information in the database.
+
+[cloudplatform]: https://github.com/ministryofjustice/cloud-platform
+[docker]: https://docker.io
+[docker-compose]: https://docs.docker.com/compose/
+[rds]: https://aws.amazon.com/rds/
