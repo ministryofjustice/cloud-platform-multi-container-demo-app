@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rails-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rails-app
+    spec:
+      containers:
+      - name: rails-app
+        image: 926803513772.dkr.ecr.eu-west-1.amazonaws.com/davids-dummy-team/davids-dummy-app:rails-app-1.0
+        ports:
+        - containerPort: 3000
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: rds-instance-multi-container-demo-dev
+                key: url
+          - name: CONTENT_API_URL
+            value: "http://content-api-service:4567/image_url.json"

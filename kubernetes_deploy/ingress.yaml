@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: multi-container-demo
+  namespace: davids-dummy-dev
+spec:
+  rules:
+  - host: multi-container-demo.apps.cloud-platform-live-0.k8s.integration.dsd.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rails-app-service
+          servicePort: 3000
