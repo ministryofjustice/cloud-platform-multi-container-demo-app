@@ -17,12 +17,11 @@ services:
       - db
       - content-api
     environment:
-      DATABASE_URL: postgres://postgres@db
+      DATABASE_URL: postgres://postgres@db/rails-app_development
       CONTENT_API_URL: http://content-api:4567/image_url.json
   worker:
     build: worker
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://postgres@db
-      DATABASE: rails-app_development
+      DATABASE_URL: postgres://postgres@db/rails-app_development
