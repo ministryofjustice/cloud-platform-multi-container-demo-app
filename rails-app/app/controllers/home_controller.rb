@@ -5,7 +5,7 @@ require 'json'
 class HomeController < ApplicationController
   def index
     @image_url = get_content
-    @dummy = Dummy.first
+    @dummy = Dummy.first || Dummy.create(message: 'Initial message')
   end
 
   private
