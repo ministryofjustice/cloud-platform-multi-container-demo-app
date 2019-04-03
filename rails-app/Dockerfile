@@ -18,6 +18,6 @@ COPY . .
 RUN chown -R appuser:appgroup /app/tmp
 RUN chown -R appuser:appgroup /app/log
 
-USER appuser
+USER 1000
 
 CMD ["rails", "server"]

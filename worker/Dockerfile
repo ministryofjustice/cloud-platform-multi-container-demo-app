@@ -6,7 +6,7 @@ RUN addgroup -g 1000 -S appgroup && \
 WORKDIR /app
 RUN chown -R appuser:appgroup /app
 
-USER appuser
+USER 1000
 
 COPY worker.sh worker.sh
 
