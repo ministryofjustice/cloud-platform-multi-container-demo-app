@@ -6,9 +6,9 @@ metadata:
 spec:
   tls:
   - hosts:
-    - multi-container-demo.apps.cloud-platform-live-0.k8s.integration.dsd.io
+    - multi-container-demo.apps.live-1.cloud-platform.service.justice.gov.uk
   rules:
-  - host: multi-container-demo.apps.cloud-platform-live-0.k8s.integration.dsd.io
+  - host: multi-container-demo.apps.live-1.cloud-platform.service.justice.gov.uk
     http:
       paths:
       - path: /
