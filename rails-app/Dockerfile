@@ -17,6 +17,7 @@ COPY . .
 
 RUN chown -R appuser:appgroup /app/tmp
 RUN chown -R appuser:appgroup /app/log
+RUN chown -R appuser:appgroup /app/db
 
 USER 1000
 
