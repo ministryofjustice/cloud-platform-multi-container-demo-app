@@ -1,6 +1,5 @@
 TEAM_NAME := davids-dummy-team
 REPO_NAME := davids-dummy-app
-VERSION := 1.2
 VERSION := 1.3
 
 COMPONENTS := rails-app content-api worker
