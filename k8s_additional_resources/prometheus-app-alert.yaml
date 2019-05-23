@@ -1,0 +1,52 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  creationTimestamp: null
+  namespace: ${NAMESPACE-NAME}
+  labels:
+    app: ${my-application}
+    role: alert-rules
+  name: prometheus-custom-rules-${my-application}
+spec:
+  groups:
+  - name: application-rules
+    rules:
+    - alert: Instance-Down
+      expr: absent(up{namespace="${NAMESPACE-NAME}"}) == 1
+      for: 1m
+      labels:
+        severity: ${custom_severity_level}
+    - alert: Quota-Exceeded
+      annotations:
+        message: Namespace {{ $labels.namespace }} is using {{ printf "%0.0f" $value
+          }}% of its {{ $labels.resource }} quota.
+        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubequotaexceeded
+      expr: |-
+        100 * kube_resourcequota{job="kube-state-metrics",type="used",namespace="${NAMESPACE-NAME}"}
+          / ignoring(instance, job, type)
+        (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+          > 90
+      for: 15m
+      labels:
+        severity: ${custom_severity_level}
+    - alert: Job-Failed
+      annotations:
+        message: Job {{ $labels.namespace }}/{{ $labels.job_name }} failed to complete.
+        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubejobfailed
+      expr: kube_job_status_failed{job="kube-state-metrics",namespace="${NAMESPACE-NAME}"}  > 0
+      for: 1h
+      labels:
+        severity: ${custom_severity_level}
+    - alert: nginx-5xx-error
+      annotations:
+        message: An HTTP 5xx error has occurred
+      expr: sum(rate(nginx_ingress_controller_requests{exported_namespace="${NAMESPACE-NAME}",
+        status=~"5.."}[5m]))*270 > 0
+      for: 1m
+      labels:
+        severity: ${custom_severity_level}
+
