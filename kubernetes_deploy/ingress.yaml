@@ -2,7 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: multi-container-demo
-  namespace: davids-dummy-dev
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
 spec:
   tls:
   - hosts:
