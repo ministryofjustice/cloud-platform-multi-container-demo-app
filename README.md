@@ -19,6 +19,11 @@ Deploying this application to the [MoJ cloud platform][cloudplatform] demonstrat
 * Setting up an RDS instance
 * Adding deployment secrets (the RDS database credentials)
 * Running database migrations
+* Putting HTTP basic authentication in front of development apps. on *.service.justice.gov.uk domains
+
+For the HTTP basic authentication, the default user is 'myuser' with password 'password123'.
+
+See the tutorial on [adding basic authentication] for details of how to change this.
 
 ## Running the application locally
 
@@ -44,3 +49,4 @@ Every ten seconds, the displayed message should change (you will need to refresh
 [docker]: https://docker.io
 [docker-compose]: https://docs.docker.com/compose/
 [rds]: https://aws.amazon.com/rds/
+[adding basic authentication]: https://user-guide.cloud-platform.service.justice.gov.uk/tasks.html#add-http-basic-authentication
