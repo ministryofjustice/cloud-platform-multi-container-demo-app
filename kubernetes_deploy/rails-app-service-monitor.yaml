@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: rails-app-service
+spec:
+  selector:
+    matchLabels:
+      app: rails-app-service
+  endpoints:
+  - port: metrics
+    interval: 30s
+

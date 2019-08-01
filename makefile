@@ -1,6 +1,6 @@
 TEAM_NAME := jason-lab
 REPO_NAME := multi-container-ruby
-VERSION := 1.7
+VERSION := 1.15
 
 COMPONENTS := rails-app content-api worker
 ECR := 754256621582.dkr.ecr.eu-west-2.amazonaws.com/$(TEAM_NAME)/$(REPO_NAME)
