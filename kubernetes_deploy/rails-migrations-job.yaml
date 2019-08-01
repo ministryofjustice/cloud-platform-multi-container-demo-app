@@ -8,12 +8,12 @@ spec:
     spec:
       containers:
       - name: rails-app
-        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/davids-dummy-team/davids-dummy-app:rails-app-1.3
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/jason-lab/multi-container-ruby:rails-app-1.3
         command: [ "bundle", "exec", "rails", "db:migrate" ]
         env:
           - name: DATABASE_URL
             valueFrom:
               secretKeyRef:
-                name: rds-instance-multi-container-demo-dev
+                name: jason-lab-live-production
                 key: url
       restartPolicy: OnFailure

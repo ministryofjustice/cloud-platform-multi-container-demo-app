@@ -8,9 +8,9 @@ metadata:
 spec:
   tls:
   - hosts:
-    - multi-container-demo.apps.live-1.cloud-platform.service.justice.gov.uk
+    - jb.apps.live-1.cloud-platform.service.justice.gov.uk
   rules:
-  - host: multi-container-demo.apps.live-1.cloud-platform.service.justice.gov.uk
+  - host: jb.apps.live-1.cloud-platform.service.justice.gov.uk
     http:
       paths:
       - path: /
