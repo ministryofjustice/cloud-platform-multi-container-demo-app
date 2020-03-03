@@ -21,4 +21,4 @@ RUN chown -R appuser:appgroup /app/db
 
 USER 1000
 
-CMD ["rails", "server"]
+CMD ["rails", "server", "-b", "0.0.0.0"]

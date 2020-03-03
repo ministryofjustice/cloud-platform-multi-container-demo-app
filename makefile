@@ -1,6 +1,6 @@
-TEAM_NAME := davids-dummy-team
-REPO_NAME := davids-dummy-app
-VERSION := 1.3
+TEAM_NAME := ministryofjustice
+REPO_NAME := cloud-platform-multi-container-demo-app
+VERSION := 1.4
 
 COMPONENTS := rails-app content-api worker
 ECR := 754256621582.dkr.ecr.eu-west-2.amazonaws.com/$(TEAM_NAME)/$(REPO_NAME)
@@ -12,12 +12,12 @@ build-images:
 
 tag-images:
 	for component in $(COMPONENTS); do \
-		docker tag $(TEAM_NAME)/$(REPO_NAME):$${component} $(ECR):$${component}-$(VERSION); \
+		docker tag $(TEAM_NAME)/$(REPO_NAME):$${component} $(TEAM_NAME)/$(REPO_NAME):$${component}-$(VERSION); \
 	done
 
 push-images:
 	for component in $(COMPONENTS); do \
-		docker push $(ECR):$${component}-$(VERSION); \
+		docker push $(TEAM_NAME)/$(REPO_NAME):$${component}-$(VERSION); \
 	done
 
 build-tag-and-push:
