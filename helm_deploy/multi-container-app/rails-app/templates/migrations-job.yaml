@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "rails-app.fullname" . }}-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: ministryofjustice/cloud-platform-multi-container-demo-app:rails-app-1.4
+        command: [ "bundle", "exec", "rails", "db:migrate" ]
+        env:
+          - name: DATABASE_URL
+            value: {{ .Values.postgresurl }}
+      restartPolicy: {{ .Values.job.restartPolicy }}
+  backoffLimit: {{ .Values.job.backoffLimit }}

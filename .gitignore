@@ -2,4 +2,6 @@
 .bundle
 rails-app/log/*.log
 rails-app/tmp
+helm_deploy/multi-container-app/values-*
+helm_deploy/container-postgres-secrets.yaml
 
