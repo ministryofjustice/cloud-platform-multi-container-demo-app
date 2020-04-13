@@ -2,6 +2,7 @@ version: '3'
 services:
   db:
     image: postgres
+    env_file: .env
   content-api:
     build: content-api
     ports:
@@ -16,12 +17,9 @@ services:
     depends_on:
       - db
       - content-api
-    environment:
-      DATABASE_URL: postgres://postgres@db/rails-app_development
-      CONTENT_API_URL: http://content-api:4567/image_url.json
+    env_file: .env
   worker:
     build: worker
+    env_file: .env
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgres://postgres@db/rails-app_development
