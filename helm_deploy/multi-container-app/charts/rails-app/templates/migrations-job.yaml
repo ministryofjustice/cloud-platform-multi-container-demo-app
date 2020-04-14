@@ -11,6 +11,6 @@ spec:
         command: [ "bundle", "exec", "rails", "db:migrate" ]
         env:
           - name: DATABASE_URL
-            value: {{ .Values.postgresurl }}
+            value: {{ .Values.global.postgresurl }}
       restartPolicy: {{ .Values.job.restartPolicy }}
   backoffLimit: {{ .Values.job.backoffLimit }}

@@ -14,7 +14,6 @@ containerPort: 3000
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-postgresurl: ""
 
 
 service:
@@ -28,7 +27,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: <ingress url>
+    - host: mcda.apps.cp-0104-1339.cloud-platform.service.justice.gov.uk
   path: /
 
 job:

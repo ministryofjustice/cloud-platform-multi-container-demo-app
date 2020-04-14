@@ -30,6 +30,6 @@ spec:
               protocol: TCP
           env:
           - name: DATABASE_URL
-            value: {{ .Values.postgresurl }}
+            value: {{ .Values.global.postgresurl }}
           - name: CONTENT_API_URL
-            value: "http://content-api:4567/image_url.json"
+            value: "http://multi-container-app-content-api:4567/image_url.json"

@@ -26,4 +26,4 @@ spec:
               protocol: TCP
           env:
           - name: DATABASE_URL
-            value: {{ .Values.postgresurl }}
+            value: {{ .Values.global.postgresurl }}
