@@ -14,7 +14,7 @@ containerPort: 3000
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-postgresurl: "postgres://dummy:dummy@<postgres-service-url>:5432/multi_container_demo_app"
+postgresurl: ""
 
 
 service:

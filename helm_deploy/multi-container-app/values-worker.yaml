@@ -9,7 +9,7 @@ image:
   tag: worker-1.4
   pullPolicy: IfNotPresent
 containerPort: 4567
-postgresurl: "postgres://dummy:dummy@<postgres-service-url>:5432/multi_container_demo_app"
+postgresurl: ""
 
 imagePullSecrets: []
 nameOverride: ""
