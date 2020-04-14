@@ -1,0 +1,36 @@
+# Default values for multi-container-app-rails-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ministryofjustice/cloud-platform-multi-container-demo-app
+  tag: rails-app-1.4
+  pullPolicy: IfNotPresent
+
+containerPort: 3000
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+postgresurl: "postgres://dummy:dummy@<postgres-service-url>:5432/multi_container_demo_app"
+
+
+service:
+  type: ClusterIP
+  port: 3000
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: <ingress url>
+  path: /
+
+job:
+  backoffLimit: 4
+  restartPolicy: OnFailure
