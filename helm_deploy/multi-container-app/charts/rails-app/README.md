@@ -29,7 +29,6 @@ helm del --purge rails-app
 | `image.tag` | The image tag. | `rails-app-1.4` |
 | `image.pullPolicy` | Whether the image should pull | `IfNotPresent` |
 | `containerPort` | Container port to be used by the service  | `3000` |
-| `postgresurl` | Full database url as mentioned in .env file | $DATABSE_URL |
 | `service.type` | The type of service you wish to use | `ClusterIP` |
 | `service.port` | The port your service will use | `"3000"` |
 | `service.targetPort` | The container port service will target for | `"3000"` |

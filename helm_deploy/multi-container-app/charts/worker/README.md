@@ -30,7 +30,6 @@ helm del --purge worker
 | `image.tag` | The image tag. | `worker-1.4` |
 | `image.pullPolicy` | Whether the image should pull | `IfNotPresent` |
 | `containetPort` | Container port to be used by the service  | `Always` |
-| `postgresurl` | Full database url as mentioned in .env file | $DATABSE_URL |
 
 ## Chart Structure
 ### Chart.yaml
