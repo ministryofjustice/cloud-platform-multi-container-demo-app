@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "multi-container-app.name" . }}-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: ministryofjustice/cloud-platform-multi-container-demo-app:rails-app-1.4
+        command: [ "bundle", "exec", "rails", "db:migrate" ]
+        env:
+          - name: DATABASE_URL
+            value: {{ .Values.postgresurl }}
+      restartPolicy: OnFailure
+  backoffLimit: 4
+
+
+
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: rails-migrations
+# spec:
+#   backoffLimit: 4
+#   template:
+#     spec:
+#       containers:
+#       - name: rails-app
+#         image: ministryofjustice/cloud-platform-multi-container-demo-app:rails-app-1.4
+#         command: [ "bundle", "exec", "rails", "db:migrate" ]
+#         env:
+#           - name: DATABASE_URL
+#             value: ${postgres-url}
+#       restartPolicy: OnFailure

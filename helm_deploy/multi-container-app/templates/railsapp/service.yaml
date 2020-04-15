@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "multi-container-app.fullname" . }}-service
+  labels:
+{{ include "multi-container-app.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.railsapp.service.type }}
+  ports:
+    - port: {{ .Values.railsapp.service.port }}
+      targetPort: {{ .Values.railsapp.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "multi-container-app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}-service

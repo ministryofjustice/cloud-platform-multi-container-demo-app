@@ -1,0 +1,5 @@
+# dependencies:
+#   - name: postgresql
+#     version: "5.0.0"
+#     repository: https://charts.bitnami.com/bitnami
+#     condition: posgresql.enabled
