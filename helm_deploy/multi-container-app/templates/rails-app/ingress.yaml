@@ -1,16 +1,9 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "multi-container-app.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
-  labels:
-{{ include "multi-container-app.labels" . | indent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+  name: multi-container-app
 spec:
 {{- if .Values.ingress.tls }}
   tls:
@@ -29,7 +22,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: rails-app-service
               servicePort: 3000
   {{- end }}
 {{- end }}

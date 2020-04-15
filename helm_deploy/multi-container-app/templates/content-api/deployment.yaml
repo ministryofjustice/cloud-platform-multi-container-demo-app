@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: content-api
+spec:
+  replicas: {{ .Values.contentapi.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: content-api
+    spec:
+      containers:
+        - name: content-api
+          image: "{{ .Values.contentapi.image.repository }}:{{ .Values.contentapi.image.tag }}"
+          imagePullPolicy: {{ .Values.contentapi.image.pullPolicy }}
+          ports:
+          - containerPort: {{ .Values.contentapi.containerPort }}

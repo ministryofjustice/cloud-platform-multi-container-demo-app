@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 postgresurl: ""
-contentapiurl: "http://multi-container-app-contentapi:4567/image_url.json"
+contentapiurl: "http://content-api-service:4567/image_url.json"
 
 ingress:
   enabled: true

@@ -2,9 +2,9 @@
 ## Introduction
 This directory contains the necessary files required to install the MoJ Multi Container Ruby application via the Helm package manager. This application is intended to be used to demonstrate the ease of deployment on a MoJ Cloud Platform. 
 
-Each component(API server, worker, rails app) of this application is the subchart. 
+Each component(API server, postgres, worker, rails app) of this application is the subchart. 
 
-For the local instance of the application you can run Postgres in an ephemeral docker container. Refer the (postgres folder)[../postgres] for installation instructions. 
+For the local instance of the application you can run Postgres in an ephemeral docker container by enabling the `postgres.enabled:true` in `values.yaml`
 
 When deploying to [cloud platform][cloudplatform] setup an RDS instance using the [terraform module] (https://github.com/ministryofjustice/cloud-platform-terraform-rds-instance) and set the $DATABASE_URL from the kubernetes secret created. 
 
@@ -12,17 +12,13 @@ When deploying to [cloud platform][cloudplatform] setup an RDS instance using th
 To install the chart:
 ```
 
-multi-container-app/. --name multi-container-app --values multi-container-app/values.yaml --namespace starter-pack-2 --set global.postgresurl=
-helm install multi-container-app/. \
-  --name multi-container-app \
-  --values values.yaml \
-  --namespace <namespace-name> \
-  --set global.postgresurl=$DATABASE_URL
+helm install --debug . --name multi-container-app --values values.yaml --namespace <namespace-name> --set postgresurl=DATABASE_URL
+
 ```
 
 The ```namespace-name``` here is the environment name (namespace) you've created in the [Creating a Cloud Platform Environment](https://ministryofjustice.github.io/cloud-platform-user-docs/cloud-platform/env-create/#creating-a-cloud-platform-environment) guide.
 
-The ```DATABASE_URL``` is the full url required to access the postgres database n the format ```postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>``` can also be fetched from the [.env](https://github.com/ministryofjustice/cloud-platform-multi-container-demo-app/blob/master/.env) file.
+The ```DATABASE_URL``` is the full url required to access the postgres database in the format ```postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>```. This can also be fetched from the [.env](https://github.com/ministryofjustice/cloud-platform-multi-container-demo-app/blob/master/.env) file.
 
 There are a number of install switches available. Please visit the [Helm docs](https://docs.helm.sh/helm/#helm-install) for more information. 
 
