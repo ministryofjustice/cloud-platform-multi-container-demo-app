@@ -1,5 +1,4 @@
 {{- if .Values.ingress.enabled -}}
-{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -17,7 +16,7 @@ spec:
 {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
-    - host: mcda.apps.cp-0104-1339.cloud-platform.service.justice.gov.uk
+    - host: {{ .host | quote }}
       http:
         paths:
           - path: /
