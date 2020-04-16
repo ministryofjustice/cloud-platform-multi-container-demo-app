@@ -8,7 +8,10 @@ The default installation include all components (API server, postgres, worker, r
 To install the chart:
 ```
 
-helm install --debug . --name multi-container-app --values values.yaml --namespace <namespace-name> --set postgresurl=$DATABASE_URL
+helm install . --name multi-container-app \
+--values values.yaml \
+--namespace <namespace-name> \
+--set postgresurl=$DATABASE_URL
 
 ```
 
@@ -32,15 +35,12 @@ helm del --purge multi-container-app
 | ---------- | --------------- | ------- |
 | `postgresurl` | Full database url in the format `postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>` | nil |
 | `contentapiurl` | Service url of content-api component | http://content-api-service:4567/image_url.json |
-
 | `ingress.enabled` | Ingress for rails-app | true |
 | `ingress.hosts.host` | Ingress url for the app | Nil |
-
 | `postgresql.enabled` | Install Postgres database in a container  | true |
 | `postgresql.existingSecret` | Name of existing kubernetes secret to use for PostgreSQL passwords | container-postgres-secrets |
 | `posgresql.postgresqlDatabase` | Name of PostgreSQL database | multi_container_demo_app |
 | `postgresql.persistence.enabled` | Enable persistence using PVC | false |
-
 | `contentapi.replicaCount` | Number of replica pods used. | 1 |
 | `contentapi.image.repository` | The image repository location. | `ministryofjustice/cloud-platform-multi-container-demo-app`|
 | `contentapi.image.tag` | The image tag. | `worker-1.4` |
@@ -49,7 +49,6 @@ helm del --purge multi-container-app
 | `contentapi.service.type` | The type of service you wish to use | `ClusterIP` |
 | `contentapi.service.port` | The port your service will use | `4567` |
 | `contentapi.service.targetPort` | The container port service will target for | `4567` |
-
 | `railsapp.replicaCount` | Used to set the number of replica pods used. | `1` |
 | `railsapp.image.repository` | The image repository location. | `ministryofjustice/cloud-platform-multi-container-demo-app`|
 | `railsapp.image.tag` | The image tag. | `rails-app-1.4` |
@@ -58,7 +57,6 @@ helm del --purge multi-container-app
 | `railsapp.service.type` | The type of service you wish to use | `ClusterIP` |
 | `railsapp.service.port` | The port your service will use | `"3000"` |
 | `railsapp.service.targetPort` | The container port service will target for | `"3000"` |
-
 | `worker.replicaCount` | Used to set the number of replica pods used. | `1` |
 | `worker.image.repository` | The image repository location. | `ministryofjustice/cloud-platform-multi-container-demo-app`|
 | `worker.image.tag` | The image tag. | `worker-1.4` |
