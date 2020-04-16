@@ -41,7 +41,6 @@ contentapi:
     targetPort: 4567
 
 railsapp:
-  url: demo-awan.apps
   rdsSecretName: rds-instance-ia
   replicaCount: 1
   image:
