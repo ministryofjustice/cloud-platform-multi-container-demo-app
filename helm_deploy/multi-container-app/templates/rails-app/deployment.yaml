@@ -18,6 +18,9 @@ spec:
           protocol: TCP
         env:
         - name: DATABASE_URL
-          value: {{ .Values.postgresurl }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.railsapp.rdsSecretName }}
+              key: url
         - name: CONTENT_API_URL
           value: {{ .Values.contentapiurl }}

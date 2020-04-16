@@ -4,18 +4,22 @@
 
 postgresurl: ""
 contentapiurl: "http://content-api-service:4567/image_url.json"
-
+                
 ingress:
   enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
   hosts:
-    - host: ""
-  path: /
+    - host: <DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
+      paths: []
+  tls:
+    - secretName: rail-demo-tls
+      hosts:
+        - <<DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
     
 postgresql:
-  enabled: true
+  enabled: false
   existingSecret: container-postgres-secrets
   postgresqlDatabase: multi_container_demo_app
   persistence:
@@ -37,6 +41,8 @@ contentapi:
     targetPort: 4567
 
 railsapp:
+  url: demo-awan.apps
+  rdsSecretName: rds-instance-ia
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app

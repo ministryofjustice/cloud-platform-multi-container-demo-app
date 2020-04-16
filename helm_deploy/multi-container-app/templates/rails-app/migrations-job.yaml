@@ -10,7 +10,10 @@ spec:
         image: "{{ .Values.railsapp.image.repository }}:{{ .Values.railsapp.image.tag }}"
         command: [ "bundle", "exec", "rails", "db:migrate" ]
         env:
-          - name: DATABASE_URL
-            value: {{ .Values.postgresurl }}
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.railsapp.rdsSecretName }}
+              key: url
       restartPolicy: OnFailure
   backoffLimit: 4
