@@ -11,12 +11,12 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
   hosts:
-    - host: <DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
+    - host: <DNS-PREFIX>.apps.live-1.cloud-platform.service.justice.gov.uk
       paths: []
   tls:
     - secretName: rail-demo-tls
       hosts:
-        - <DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
+        - <DNS-PREFIX>.apps.live-1.cloud-platform.service.justice.gov.uk
     
 postgresql:
   enabled: false
