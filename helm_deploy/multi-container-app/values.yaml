@@ -16,7 +16,7 @@ ingress:
   tls:
     - secretName: rail-demo-tls
       hosts:
-        - <<DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
+        - <DNS-PREFIX>.live-1.cloud-platform.service.justice.gov.uk
     
 postgresql:
   enabled: false
@@ -41,7 +41,7 @@ contentapi:
     targetPort: 4567
 
 railsapp:
-  rdsSecretName: rds-instance-ia
+  rdsSecretName: <RDS-SECRET-NAME>
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app
