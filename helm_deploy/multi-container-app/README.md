@@ -8,6 +8,9 @@ The default installation include all components (API server, postgres, worker, r
 To install the chart:
 
 Update the `values.yaml` file for `databaseUrlSecretName` with the name of the secret where the postgresql URL is stored and `ingress.hosts.host` for the url of the app.
+
+Check (user guide)[https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#adding-a-secret-to-an-application] for how to create kubernetes secret.
+
 ```
 
 helm install . --name multi-container-app \
@@ -33,7 +36,7 @@ helm del --purge multi-container-app
 
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
-| `databaseUrlSecretName` | Full database url in the format `postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>` | REQUIRED |
+| `databaseUrlSecretName` | Secret name where the database url is stored with the key `url` | REQUIRED |
 | `contentapiurl` | Service url of content-api component | http://content-api-service:4567/image_url.json |
 | `ingress.enabled` | Ingress for rails-app | true |
 | `ingress.hosts.host` | Ingress url for the app | REQUIRED |
