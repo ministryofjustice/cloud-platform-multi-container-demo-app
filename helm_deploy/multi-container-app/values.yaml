@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-postgresurl: ""
+DatabaseUrlSecretName: <DATABASE-URL-SECRET-NAME>
 contentapiurl: "http://content-api-service:4567/image_url.json"
                 
 ingress:
@@ -13,13 +13,14 @@ ingress:
   hosts:
     - host: <DNS-PREFIX>.apps.live-1.cloud-platform.service.justice.gov.uk
       paths: []
-  tls:
-    - secretName: rail-demo-tls
-      hosts:
-        - <DNS-PREFIX>.apps.live-1.cloud-platform.service.justice.gov.uk
+  # Update tls for custom domain and update secretName where certificate is stored
+  # tls:
+  #   - secretName: <CERTIFICATE-SECRET-NAME>
+  #     hosts:
+  #       - <DNS-PREFIX>.apps.live-1.cloud-platform.service.justice.gov.uk
     
 postgresql:
-  enabled: false
+  enabled: true
   existingSecret: container-postgres-secrets
   postgresqlDatabase: multi_container_demo_app
   persistence:
@@ -41,7 +42,6 @@ contentapi:
     targetPort: 4567
 
 railsapp:
-  rdsSecretName: <RDS-SECRET-NAME>
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app

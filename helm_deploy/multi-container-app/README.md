@@ -6,18 +6,18 @@ The default installation include all components (API server, postgres, worker, r
 
 ## Installing the Chart
 To install the chart:
+
+Update the `values.yaml` file for `databaseUrlSecretName` with the name of the secret where the postgresql URL is stored and `ingress.hosts.host` for the url of the app.
 ```
 
 helm install . --name multi-container-app \
 --values values.yaml \
---namespace <namespace-name> \
---set postgresurl=$DATABASE_URL
+--namespace <namespace-name> 
 
 ```
 
 The ```namespace-name``` here is the environment name (namespace) you've created in the [Creating a Cloud Platform Environment](https://ministryofjustice.github.io/cloud-platform-user-docs/cloud-platform/env-create/#creating-a-cloud-platform-environment) guide.
 
-The ```DATABASE_URL``` is the full url required to access the postgres database in the format ```postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>```. When using RDS instance for postgres, this can be fetched from kubernetes secret. When using a ephemeral docker container for postgres, this can be formed with above template and passed directly to the chart when installing. 
 
 There are a number of install switches available. Please visit the [Helm docs](https://docs.helm.sh/helm/#helm-install) for more information. 
 
@@ -33,10 +33,10 @@ helm del --purge multi-container-app
 
 | Parameter  | Description     | Default |
 | ---------- | --------------- | ------- |
-| `postgresurl` | Full database url in the format `postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>` | nil |
+| `databaseUrlSecretName` | Full database url in the format `postgres://<USERNAME>:<PASSWORD>@<HOST URL>:5432/<DATABASE NAME>` | REQUIRED |
 | `contentapiurl` | Service url of content-api component | http://content-api-service:4567/image_url.json |
 | `ingress.enabled` | Ingress for rails-app | true |
-| `ingress.hosts.host` | Ingress url for the app | Nil |
+| `ingress.hosts.host` | Ingress url for the app | REQUIRED |
 | `postgresql.enabled` | Install Postgres database in a container  | true |
 | `postgresql.existingSecret` | Name of existing kubernetes secret to use for PostgreSQL passwords | container-postgres-secrets |
 | `posgresql.postgresqlDatabase` | Name of PostgreSQL database | multi_container_demo_app |
