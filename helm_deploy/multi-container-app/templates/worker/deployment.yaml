@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: worker
 spec:
   replicas: {{ .Values.worker.replicaCount }}
+  selector:
+    matchLabels:
+      app: worker
   template:
     metadata:
       labels:
