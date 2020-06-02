@@ -30,7 +30,7 @@ contentapi:
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app
-    tag: content-api-1.4
+    tag: content-api-1.5
     pullPolicy: IfNotPresent
   containerPort: 4567
   imagePullSecrets: []
@@ -45,7 +45,7 @@ railsapp:
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app
-    tag: rails-app-1.4
+    tag: rails-app-1.5
     pullPolicy: IfNotPresent
   containerPort: 3000
   imagePullSecrets: []
@@ -63,7 +63,7 @@ worker:
   replicaCount: 1
   image:
     repository: ministryofjustice/cloud-platform-multi-container-demo-app
-    tag: worker-1.4
+    tag: worker-1.5
     pullPolicy: IfNotPresent
   containerPort: 4567
   imagePullSecrets: []
