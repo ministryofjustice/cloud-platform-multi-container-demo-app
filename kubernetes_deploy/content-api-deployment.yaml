@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
       - name: content-api
-        image: ministryofjustice/cloud-platform-multi-container-demo-app:content-api-1.4
+        image: ministryofjustice/cloud-platform-multi-container-demo-app:content-api-1.5
         ports:
         - containerPort: 4567
