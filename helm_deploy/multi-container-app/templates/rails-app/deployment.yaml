@@ -4,6 +4,9 @@ metadata:
   name: rails-app
 spec:
   replicas: {{ .Values.railsapp.replicaCount }}
+  selector:
+    matchLabels:
+      app: rails-app
   template:
     metadata:
       labels:
