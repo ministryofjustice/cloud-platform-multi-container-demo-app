@@ -1,6 +1,6 @@
 TEAM_NAME := ministryofjustice
 REPO_NAME := cloud-platform-multi-container-demo-app
-VERSION := 1.5
+VERSION := 1.6
 
 COMPONENTS := rails-app content-api worker
 
