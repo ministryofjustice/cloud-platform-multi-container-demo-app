@@ -23,3 +23,9 @@ build-tag-and-push:
 	make build-images
 	make tag-images
 	make push-images
+
+clean-images:
+	for component in $(COMPONENTS); do \
+		docker rmi $(TEAM_NAME)/$(REPO_NAME):$${component};\
+		docker rmi $(TEAM_NAME)/$(REPO_NAME):$${component}-$(VERSION);\
+	done
