@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:2.7.1-alpine
 
 # Install pre-requisites for building nokogiri & pg gems
 RUN apk --update add --virtual build_deps \
