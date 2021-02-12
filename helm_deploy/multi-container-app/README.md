@@ -12,11 +12,7 @@ Update the `values.yaml` file for `databaseUrlSecretName` with the name of the s
 Check (user guide)[https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#adding-a-secret-to-an-application] for how to create kubernetes secret.
 
 ```
-
-helm install . --name multi-container-app \
---values values.yaml \
---namespace <namespace-name> 
-
+helm install  multi-container-demo . --values values.yaml --namespace <namespace-name> 
 ```
 
 The ```namespace-name``` here is the environment name (namespace) you've created in the [Creating a Cloud Platform Environment](https://ministryofjustice.github.io/cloud-platform-user-docs/cloud-platform/env-create/#creating-a-cloud-platform-environment) guide.
@@ -29,7 +25,7 @@ The chart has a dependency for postgres, that can be seen in the chart's require
 ## Deleting the Chart
 To delete the installation from your cluster:
 ```
-helm del --purge multi-container-app
+helm delete multi-container-demo --namespace <namespace-name> 
 ```
 ## Configuration
 ### Parent chart - multi-container-app
@@ -83,7 +79,7 @@ A directory containing all subcharts upon which this chart depends.
 ## Deleting the Chart
 To delete the installation from your cluster:
 ```
-helm del --purge multi-container-app
+helm delete multi-container-demo --namespace <namespace-name> 
 ```
 
 ## Secrets
