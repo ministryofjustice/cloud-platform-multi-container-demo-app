@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rails-migrations
+  name: rails-migrations-{{ .Release.Revision }} # Jobs can't be patched, so need unique names
 spec:
   template:
     spec:
