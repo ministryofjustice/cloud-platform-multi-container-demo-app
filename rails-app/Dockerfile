@@ -23,6 +23,7 @@ RUN mkdir -p /app/tmp/storage
 RUN chown -R appuser:appgroup /app/tmp
 RUN chown -R appuser:appgroup /app/log
 RUN chown -R appuser:appgroup /app/db
+RUN chown -R appuser:appgroup /app/Gemfile.lock
 
 USER 1000
 
