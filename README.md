@@ -28,7 +28,7 @@ See the tutorial on [adding basic authentication] for details of how to change t
 ## Running the application locally
 
 The .env file holds all the environment varaibles injected into the containers. The only thing to amend is
-the password place holder (<ADD-PASSWORD-HERE>) with a unique password. 
+the password place holder (\<ADD-PASSWORD-HERE\>) with a unique password. 
 
 To run the application locally, you will need [Docker][docker]. After cloning the application from github, run:
 
