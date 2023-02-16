@@ -7,6 +7,7 @@ contentapiurl: "http://content-api-service:4567/image_url.json"
                 
 ingress:
   enabled: true
+  ingressClassName: default
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
